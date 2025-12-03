@@ -212,21 +212,21 @@ Build a predictor that best describes an outcome for the observed features.
 
 ![Precision and recall.](graphics/recallprecision.png){width=25% title="Courtesy Eunsuk Kang."}
 
-## Under fitting vs. Overfitting
+## Underfitting vs. Overfitting
 
 * Overfitting.
     * Model learns exactly the input data.
     * Does not *generalize* to unseen data.
-* Under fitting.
+* Underfitting.
     * Model makes very general observations.
     * Poorly fits to data.
 
-### Balancing Under fitting and Overfitting
+### Balancing Underfitting and Overfitting
 
-* Adjust degrees of freedom in the model to balance between overfitting and under fitting.
+* Adjust degrees of freedom in the model to balance between overfitting and underfitting.
     * Challenging to get right in practice!
 
-## Under Fitting Example
+## Underfitting Example
 
 ::: columns
 
