@@ -159,18 +159,18 @@ New part of the course.
 
 ![](graphics/doordash.png){width=60% title="Courtesy DoorDash."}
 
-## Features for delivery prediction
+## Possible Features for Delivery Prediction
 
-* Order time, day of week
-* Average number of orders in that hour
-* Order size
-* Special requests
-* Order items
-* Preparation time
+1. Order time, day of week.
+1. Average number of orders in that hour.
+1. Order size.
+1. Special requests.
+1. Order items.
+1. Preparation time.
 
 ## Learning
 
-Build a predictor that best describes an outcome for the observed features
+Build a predictor that best describes an outcome for the observed features.
 
 | RestaurantID | Order3 | SpecialRequest | DayOfWeek | PreparationTime |
 |-|-|-|-|-|
@@ -181,37 +181,52 @@ Build a predictor that best describes an outcome for the observed features
 
 ## Evaluation
 
-* Accuracy on learned data vs accuracy on unseen data
-  * Separate learning set, not used for training
+* Evaluate model accuracy on *learned* data vs. previously *unseen* data.
+  * Separate learning set, not used for training.
 
-![data sets](graphics/data-sets.png){width=50% title="Courtesy Eunsuk Kang."}
+![Dataset partitioning.](graphics/data-sets.png){width=50% title="Courtesy Eunsuk Kang."}
 
 ## Evaluation Methods
 
-* For binary predictors: False positives vs false negatives, recall, precision
-* For numeric predictors: Average (relative) distance between real & predicted values
-* For ranking predictors: Top-K algorithms, etc., 
+* Binary predictors.
+    * Is a data point in class A or not?
+    * False positives vs. false negatives, recall, precision.
+    * This is called a confusion matrix.
+    * Commonly used for several tasks, including:
+        1. Classification tasks
+        1. Information retrieval.
+* Numeric predictors.
+    * Output is a number.
+    * Average (relative) distance between real & predicted values.
+    * Mean squared error, mean absolute error.
+* Ranking predictors.
+    * Top-K algorithms, etc.
+    * Evaluate quality of ranking against some "ground" truth.
 * (More ...)
 
-## Evaluation Method
+## Evaluation Methods
 
 ![](graphics/doordash.png){width=60% title="Courtesy DoorDash."}
 
-## Recall vs Precision
+## Precision and Recall
 
-![Recall vs Precision](graphics/recallprecision.png){width=25% title="Courtesy Eunsuk Kang."}
+![Precision and recall.](graphics/recallprecision.png){width=25% title="Courtesy Eunsuk Kang."}
 
-## Underfitting vs Overfitting
+## Under fitting vs. Overfitting
 
-* Overfitting: Model learns exactly the input data, but does not
-generalize to unseen data
-* Underfitting: Model makes very general observations but poorly
-fits to data
-* Adjust degrees of freedom in the model to balance between
-overfitting and underfitting
-	* Challenging to get right in practice! 
+* Overfitting.
+    * Model learns exactly the input data.
+    * Does not *generalize* to unseen data.
+* Under fitting.
+    * Model makes very general observations.
+    * Poorly fits to data.
 
-## Underfitting example
+### Balancing Under fitting and Overfitting
+
+* Adjust degrees of freedom in the model to balance between overfitting and under fitting.
+    * Challenging to get right in practice!
+
+## Under Fitting Example
 
 <!-- colstart -->
 
@@ -225,7 +240,7 @@ overfitting and underfitting
 ![](graphics/underfitting.png)
 <!-- colend -->
 
-## Overfitting example
+## Overfitting Example
 
 <!-- colstart -->
 
