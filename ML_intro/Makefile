@@ -1,9 +1,13 @@
 FILE=ml_intro
+PANDOC_CMD=pandoc --shift-heading-level-by=-1 -t slidy -s $(FILE).md -o $(FILE).html
+
 all:
-	pandoc -t slidy -s $(FILE).md -o $(FILE).html --filter pandoc-plantuml
+	$(PANDOC_CMD)
 self-contained:
-	pandoc --self-contained -t slidy -s $(FILE).md -o $(FILE).html --filter pandoc-plantuml
+	$(PANDOC_CMD) --embed-resources
 preview: all
 	gio open $(FILE).html
 clean:
-	rm -rf $(FILE).html plantuml-images
+	rm -rf $(FILE).html
+open:
+	gio open `git remote get-url origin`

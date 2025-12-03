@@ -1,6 +1,6 @@
 ---
 title: Introduction to Machine Learning and Machine Learning Systems
-author: Raffi Khatchadourian (based on many sources)
+author: Raffi Khatchadourian (based on material from Christian Kaestner and Eunsuk Kang)
 date: November 26, 2025
 ---
 
@@ -12,7 +12,13 @@ New part of the course.
 
 ## What is Machine Learning (ML)?
 
-![AI vs. ML](graphics/AIvsML.jpg){width=30% title="Courtesy Eunsuk Kang."}
+:::::::::::::: {.columns}
+::: {.column width="50%"}
+
+![AI vs. ML](graphics/AIvsML.jpg){width=90% title="Courtesy Eunsuk Kang."}
+
+:::
+::: {.column width="50%"}
 
 - ML is a subfield of Artificial Intelligence (AI).
 - ML is concerned with the design and development of algorithms that allow computers to learn from, make predictions or decisions, or generate "new" data based on ("other") data.[^1]
@@ -22,16 +28,28 @@ New part of the course.
 
 [^1]: Whether "new" data is actually generated or illegally copied (sometimes verbatim) is currently a controversial topic in the AI/ML community. The problem lies in the "explainability" of ML models, especially large language models (LLMs) and generative AI models.
 
+:::
+::::::::::::::
+
 ## Foundation Models
 
-![AI vs. ML](graphics/AIvsML.jpg){width=30% title="Courtesy Eunsuk Kang."}
+:::::::::::::: {.columns}
+::: {.column width="50%"}
+
+![AI vs. ML](graphics/AIvsML.jpg){width=90% title="Courtesy Eunsuk Kang."}
+
+:::
+::: {.column width="50%"}
 
 - Foundation models are large-scale machine learning models trained on vast amounts of data.
 - They are contained within "Deep Learning" in the Venn diagram above.
 - They are also referred to as "generative AI" models and include large language models (LLMs) like GPT-4, PaLM, and LLaMA.
 - Foundation models can perform a wide range of tasks, such as text generation, image generation, and more, often with minimal fine-tuning for specific applications.
 
-## Types of Machine Learning
+:::
+::::::::::::::
+
+## Types of Machine Learning (I)
 
 - **Supervised Learning**: The model is trained on labeled data, where the input data is paired with the correct output. The goal is to learn a mapping from inputs to outputs.
 - **Unsupervised Learning**: The model is trained on unlabeled data and must find patterns or structures in the data without explicit guidance.
@@ -41,6 +59,9 @@ New part of the course.
 - **Deep Learning**: A subset of ML that uses neural networks with many layers (deep architectures) to model complex patterns in data.
 - **Transfer Learning**: The model leverages knowledge gained from one task to improve performance on a related but different task.
 - **Online Learning**: The model learns incrementally from a stream of data, updating its knowledge as new data arrives.
+
+## Types of Machine Learning (II)
+
 - **Federated Learning**: The model is trained across multiple decentralized devices or servers while keeping the data localized, enhancing privacy and security.
 - **Active Learning**: The model actively selects the most informative data points to label, reducing the amount of labeled data needed for training.
 - **Ensemble Learning**: Combines multiple models to improve overall performance, often by averaging predictions or using voting mechanisms.
