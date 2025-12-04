@@ -124,9 +124,9 @@ New part of the course.
 
 ### After Deployment
 
-1. Evaluate model on production data; monitor
-1. Select production data for retraining
-1. Update model regularly
+1. Evaluate model on production data; monitor.
+1. Select production data for retraining.
+1. Update model regularly.
 
 ## Design Decisions in ML-based Systems
 
