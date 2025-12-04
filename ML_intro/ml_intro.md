@@ -61,10 +61,10 @@ New part of the course.
 - **Self-supervised Learning**: The model generates its own labels from the input data, often used in natural language processing and computer vision tasks.
 - **Deep Learning**: A subset of ML that uses neural networks with many layers (deep architectures) to model complex patterns in data.
 - **Transfer Learning**: The model leverages knowledge gained from one task to improve performance on a related but different task.
-- **Online Learning**: The model learns incrementally from a stream of data, updating its knowledge as new data arrives.
 
 ## Types of Machine Learning (II)
 
+- **Online Learning**: The model learns incrementally from a stream of data, updating its knowledge as new data arrives.
 - **Federated Learning**: The model is trained across multiple decentralized devices or servers while keeping the data localized, enhancing privacy and security.
 - **Active Learning**: The model actively selects the most informative data points to label, reducing the amount of labeled data needed for training.
 - **Ensemble Learning**: Combines multiple models to improve overall performance, often by averaging predictions or using voting mechanisms.
