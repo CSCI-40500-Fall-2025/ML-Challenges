@@ -1,19 +1,19 @@
 ---
 title: Introduction to Machine Learning and Machine Learning Systems
 author: Raffi Khatchadourian (based on material from Christian Kaestner and Eunsuk Kang)
-date: November 26, 2025
+date: December 10, 2025
 semester: Fall 2025
 footer: Based on "Machine Learning in Production/AI Engineering" by Christian Kaestner and Eunsuk Kang, Carnegie Mellon University
 license: Creative Commons Attribution 4.0 International (CC BY 4.0)
 ---
 
-# Introduction to Machine Learning and Machine Learning Systems
+# Challenges in Engineering Machine Learning (Software) Systems
 
 ## Disclaimer
 
 New part of the course.
 
-## What is Machine Learning (ML)?
+## Recall
 
 :::::::::::::: {.columns}
 ::: {.column width="50%"}
@@ -23,258 +23,170 @@ New part of the course.
 :::
 ::: {.column width="50%"}
 
-- ML is a subfield of Artificial Intelligence (AI).
-- ML is concerned with the design and development of algorithms that allow computers to learn from, make predictions or decisions, or generate "new" data based on ("other") data.[^1]
-- This is different than traditional programming, where "hard-and-fast" rules are explicitly coded by programmers.
-  - Conditional statements, loops, functions, etc.
+### Machine Learning (ML)
+
 - In ML, the system *learns* patterns from data and uses these patterns to make predictions or decisions on new, unseen data or generate "new" data.
 
-[^1]: Whether "new" data is actually generated or illegally copied (sometimes verbatim) is currently a controversial topic in the AI/ML community. The problem lies in the "explainability" of ML models, especially large language models (LLMs) and generative AI models.
+### Machine Learning (ML) Systems
+
+- An ML system is a software system that incorporates machine learning models to perform specific tasks or provide certain functionalities.
+- The ML component of an ML system may be relatively small compared to the overall system, but it plays a crucial role in enabling "intelligent" behavior.
+   - This includes *personalization*, i.e., adapting behavior based on user data and preferences.
+- ML systems often involve data collection, preprocessing, model training, evaluation, deployment, and monitoring.
 
 :::
 ::::::::::::::
 
-## Foundation Models
+## Challenges in ML Systems
 
-:::::::::::::: {.columns}
-::: {.column width="50%"}
+- Building and maintaining ML systems presents unique challenges compared to traditional software systems.
+- These challenges arise from the inherent complexity of ML models, data dependencies, and the dynamic nature of real-world environments where these systems operate.
 
-![AI vs. ML](graphics/AIvsML.jpg){width=90% title="Courtesy Eunsuk Kang."}
+## Traditional Programming vs ML
 
-:::
-::: {.column width="50%"}
+![Programming vs ML](graphics/programming-vs-ml.png){title="Courtesy Eunsuk Kang."}
 
-- Foundation models are large-scale machine learning models trained on vast amounts of data.
-- They are contained within "Deep Learning" in the Venn diagram above.
-- They are also referred to as "generative AI" models and include large language models (LLMs) like GPT-4, PaLM, and LLaMA.
-- Foundation models can perform a wide range of tasks, such as text generation, image generation, and more, often with minimal fine-tuning for specific applications.
+## Complexity in Engineering (Software) Systems
 
-:::
-::::::::::::::
+![Airplane](graphics/airplane.jpg){title="Courtesy Eunsuk Kang."}
 
-## Types of Machine Learning (I)
+* Automobile: ~30,000 parts; Airplane: ~3,000,000 parts
+* MS Office: ~ 40,000,000 LOCs; Debian: ~ 400,000,000 LOCs
 
-- **Supervised Learning**: The model is trained on labeled data, where the input data is paired with the correct output. The goal is to learn a mapping from inputs to outputs.
-- **Unsupervised Learning**: The model is trained on unlabeled data and must find patterns or structures in the data without explicit guidance.
-- **Reinforcement Learning**: The model learns to make decisions by taking actions in an environment to maximize some notion of cumulative reward.
-- **Semi-supervised Learning**: Combines both labeled and unlabeled data for training, often used when acquiring labeled data is expensive or time-consuming.
-- **Self-supervised Learning**: The model generates its own labels from the input data, often used in natural language processing and computer vision tasks.
-- **Deep Learning**: A subset of ML that uses neural networks with many layers (deep architectures) to model complex patterns in data.
-- **Transfer Learning**: The model leverages knowledge gained from one task to improve performance on a related but different task.
+> Q: How do we build such complex systems?
 
-## Types of Machine Learning (II)
+## Managing Complexity in Software
 
-- **Online Learning**: The model learns incrementally from a stream of data, updating its knowledge as new data arrives.
-- **Federated Learning**: The model is trained across multiple decentralized devices or servers while keeping the data localized, enhancing privacy and security.
-- **Active Learning**: The model actively selects the most informative data points to label, reducing the amount of labeled data needed for training.
-- **Ensemble Learning**: Combines multiple models to improve overall performance, often by averaging predictions or using voting mechanisms.
-- **Generative Learning**: The model learns to generate new data samples that resemble the training data, often used in applications like image synthesis and text generation.
+* **Abstraction**: Hide details & focus on high-level behavior.
+* **Reuse**: Package into reusable libraries & APIs with well-defined _contracts_.
+* **Composition**: Build large components out of smaller ones.
 
-## Applications of Machine Learning
+```java
+public class Algorithms {
 
-- **Natural Language Processing (NLP)**: Language translation, sentiment analysis, chatbots.
-- **Computer Vision**: Image recognition, object detection, facial recognition.
-- **Recommendation Systems**: Product recommendations, content suggestions.
-- **Healthcare**: Disease diagnosis, personalized treatment plans.
-- **Finance**: Fraud detection, algorithmic trading.
-- **Autonomous Vehicles**: Self-driving cars, traffic prediction.
-- **Robotics**: Robot navigation, manipulation tasks.
-- **Gaming**: Game AI, player behavior prediction.
-- **Marketing**: Customer segmentation, targeted advertising.
-- **Cybersecurity**: Threat detection, anomaly detection.
-- **Speech Recognition**: Voice assistants, transcription services.
-- **Software Development**: Code completion, bug detection.
+    /**
+     * Finds the shortest distance between to vertices <code>v1</code>
+     * and <code>v2</code> in graph <code>g</code>.
+     *
+	 * This method is only supported for connected vertices.
+     */
+    public static int shortestDistance(Graph g, Vertex v1, Vertex v2) {
+        // ...
+    }
+}
+```
 
-## Case Study: Food Delivery Service
+## (Lack of) Modularity in ML
 
-![](graphics/doordash.png){width=60% title="Courtesy DoorDash."}
+* Often no clear specification of "correct" behavior.
+  * Optimizing metrics instead of providing guarantees.
+* Model behavior strongly dependent on training & test sets.
+  * What happens if distribution changes?
+* Poorly understood interactions between models.
+  * Ideally, develop models separately & compose together.
+  * In general, must train & tune together.
 
-## Predicting Delivery Time
+## Concept Drifts
 
-* What are its objective? How do we measure success?
-* How do we present intelligence & receive feedback?
-* How do we build the intelligence?
-  * What factors does it depend on?
-  * What can be used for learning & prediction?
+* ML estimates "f(x) = y"
+  * What if the relationship between "x" & "y" changes over time? 
+  * What if "f" does not capture certain relationships?
 
-## How Does ML Work?
+> Q: Examples?
 
-- ML algorithms build models based on sample data, known as "training data," to make predictions or decisions without being explicitly programmed to perform the task.
-- The process typically involves:
-  1. Collecting and preparing data.
-  2. Choosing a suitable ML algorithm.
-  3. Training the model on the training data.
-  4. Evaluating the model's performance on unseen data (test data).
-  5. Tuning the model to improve performance.
+* In general, impossible to predict.
+	* Continuously monitor and update model.
 
-## Typical Machine Learning Pipeline
+## Feedback Loops
 
-![ML Pipeline](graphics/ML-pipeline.png){width=60% title="Courtesy Semi Koen."}
+* Every system is deployed as part of an environment.
+* Output influences the environment.
+  * In turn, affects input back to the system.
+  * Over time, may lead to undesirable (and difficult to reverse) outcome.
+  * Higher risks if initial data set & model is biased.
 
-## ML Tasks by Phase
+![Feedback Loop](graphics/feedback-loop.png){title="Courtesy Eunsuk Kang."}
 
-### Before Deployment
+## Example: Crime Prediction
 
-1. Obtain labeled data.
-1. Identify and extract features.
-1. Split data into training and evaluation set.
-1. Learn model from training data.
-1. Evaluate model on evaluation data.
-1. Repeat, revising features.
+1. Use past data to predict crime rates.
+1. Police increases the frequency of patrol in area $X$.
+1. More arrested made in area $X$.
+1. New crime data fed back to the model.
+1. Repeat.
 
-### After Deployment
+![Crime Map](graphics/crime-map.jpg){title="Courtesy Eunsuk Kang."}
 
-1. Evaluate model on production data; monitor.
-1. Select production data for retraining.
-1. Update model regularly.
+## Discussion: Product Recommendations
 
-## Design Decisions in ML-based Systems
+![Product recommendations](graphics/recommendations.png){title="Courtesy Eunsuk Kang."}
 
-* Data collection and preparation.
-  * Training vs test sets, sizes.
-* Feature engineering.
-* Model selection & configuration.
-  * Structure: Number of layers, decision tree depth, etc., depending on model type.
-  * Hyperparameters: Learning rate, regularization parameters, etc.
-  * Search algorithms.
-* (More ...)
+1. Specification/metrics?
+1. Concept drift?
+1. Feedback loop?
 
-## Example Data
+## Discussion: Streaming Recommendations
 
-| RestaurantID | Order| OrderTime|ReadyTime|PickupTime|
-|-|-|-|-|-|
-| 5 |5A;3;10;11C;C:No onion| 18:11|18:23|18:31|
-|...|
-|...|
-|...|
+![["How Does Amazon & Netflix Personalization Work?"](https://vwo.com/blog/deliver-personalized-recommendations-the-amazon-netflix-way){target="new"} by [Astha Khandelwal](https://vwo.com/blog/author/asthakhandelwal){target="new"}](graphics/netflix-homepage-1024x560.webp)
 
-## Data Processing
+1. Specification/metrics?
+1. Concept drift?
+1. Feedback loop?
 
-### Data Cleaning
+## Technical Debt
 
-* Remove outliers.
-* Normalize data.
-* Fill in missing values.
-* Remove misleading/useless items.
+> "Machine learning: The high interest credit card of technical debt" -- [Sculley et al. 2014](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43146.pdf)
 
-### Feature Engineering
+![](graphics/debt.jpg){title="Courtesy Eunsuk Kang."}
 
-* Identify parameters of interest that a model can learn on.
-* Convert initial data into feature set.
-* Select relevant subset of features.
+## Technical Debt
 
-> QUESTION: What features would you use for delivery prediction?
+[![](graphics/debt.png){width=45%}](https://www.monkeyuser.com/2018/tech-debt/)
 
-## Features
+## The Notebook
 
-![](graphics/doordash.png){width=60% title="Courtesy DoorDash."}
+> Jupyter Notebooks are a gift from God to those who work with data. They allow us to do quick experiments with Julia, Python, R, and more -- [John Paul Ada](https://towardsdatascience.com/no-hassle-machine-learning-experiments-with-azure-notebooks-e1a22e8782c3)
 
-## Possible Features for Delivery Prediction
+![](graphics/jupyter.png){title="Courtesy Eunsuk Kang." width=60%}
 
-1. Order time, day of week.
-1. Average number of orders in that hour.
-1. Order size.
-1. Special requests.
-1. Order items.
-1. Preparation time.
+> Q: What are some benefits and drawbacks of Jupyter-style notebooks?
 
-## Learning
+## Notebooks
 
-Build a predictor that best describes an outcome for the observed features.
+### Pros
 
-| RestaurantID | Order3 | SpecialRequest | DayOfWeek | PreparationTime |
-|-|-|-|-|-|
-|5|yes| yes|2|12|
-|...|
-|...|
-|...|
+* Quick and easy exploration and experimentation.
+* Literate programming intermixing text, code, and results.
+* Small code snippets, heavy use of libraries.
+* Blocks may execute independently (good or bad?).
 
-## Evaluation
+### Cons
 
-* Evaluate model accuracy on *learned* data vs. previously *unseen* data.
-  * Separate learning set, not used for training.
+* Proof of concept on snapshot data only.
+* Poor abstraction and testing practices.
+* Low automation, often not scalable.
+* Difficult transition in production.
 
-![Dataset partitioning.](graphics/data-sets.png){width=50% title="Courtesy Eunsuk Kang."}
+### Questions
 
-## Evaluation Methods
+> Q: What may notebooks be good for (something we learned in this class!)?
 
-* Binary predictors.
-    * Is a data point in class A or not?
-    * False positives vs. false negatives, recall, precision.
-    * This is called a confusion matrix.
-    * Commonly used for several tasks, including:
-        1. Classification tasks
-        1. Information retrieval.
-* Numeric predictors.
-    * Output is a number.
-    * Average (relative) distance between real & predicted values.
-    * Mean squared error, mean absolute error.
-* Ranking predictors.
-    * Top-K algorithms, etc.
-    * Evaluate quality of ranking against some "ground" truth.
-* (More ...)
+## ML and Technical Debt 
 
-## Evaluation Methods
+* ML can seem like an easy addition, but it may cause long-term costs.
+* Needs to be maintained, evolved, and debugged.
+* Goals and environment may change; some changes are subtle.
 
-![](graphics/doordash.png){width=60% title="Courtesy DoorDash."}
+### Example Problems
 
-## Precision and Recall
+- Systems and models are tangled; changing one has *cascading* effects on the other.
+- Untested, brittle infrastructure; manual deployment.
+- Unstable data dependencies, replication crisis.
+- Data drift and feedback loops.
+- Magic constants and dead experimental code paths.
 
-![Precision and recall.](graphics/recallprecision.png){width=25% title="Courtesy Eunsuk Kang."}
+### Further Reading
 
-## Underfitting vs. Overfitting
+Sculley, David, et al. [Hidden technical debt in machine learning systems](http://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf). Advances in Neural Information Processing Systems. 2015.
 
-* Overfitting.
-    * Model learns exactly the input data.
-    * Does not *generalize* to unseen data.
-* Underfitting.
-    * Model makes very general observations.
-    * Poorly fits to data.
-
-### Balancing Underfitting and Overfitting
-
-* Adjust degrees of freedom in the model to balance between overfitting and underfitting.
-    * Challenging to get right in practice!
-
-## Underfitting Example
-
-::: columns
-
-:::: column
-|Text|Genre|
-|-|-|
-|When the earth stood ... |Science fiction|
-|Two households, both alike...|Romance|
-|To Sherlock Holmes she...|Adventure|
-::::
-
-:::: column
-![](graphics/underfitting.png)
-::::
-
-:::
-
-## Overfitting Example
-
-::: columns
-
-:::: column
-|Text|Genre|
-|-|-|
-|When the earth stood ... |Science fiction|
-|Two households, both alike...|Romance|
-|To Sherlock Holmes she...|Adventure|
-::::
-
-:::: column
-![](graphics/overfitting.png)
-::::
-
-:::
-
-## Learning and Evaluating in Production
-
-* Beyond static data sets, build telemetry.
-* Use sample of live data for evaluation.
-* Retrain models with sampled live data regularly.
-* Monitor objectives and intervene if necessary.
+<!-- TODO: More on this! -->
