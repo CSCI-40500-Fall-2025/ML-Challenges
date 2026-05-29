@@ -1,10 +1,11 @@
 ---
-title: Introduction to Machine Learning and Machine Learning Systems
+title: Challenges in Engineering Machine Learning (Software) Systems
 author: Raffi Khatchadourian (based on material from Christian Kaestner and Eunsuk Kang)
 date: December 10, 2025
 semester: Fall 2025
+lang: en
 footer: Based on "Machine Learning in Production/AI Engineering" by Christian Kaestner and Eunsuk Kang, Carnegie Mellon University
-license: Creative Commons Attribution 4.0 International (CC BY 4.0)
+license: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 ---
 
 # Challenges in Engineering Machine Learning (Software) Systems
@@ -137,17 +138,17 @@ public class Algorithms {
 
 > "Machine learning: The high interest credit card of technical debt" -- [Sculley et al. 2014](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43146.pdf)
 
-![](graphics/debt.jpg){title="Courtesy Eunsuk Kang."}
+![A credit card, illustrating technical debt](graphics/debt.jpg){title="Courtesy Eunsuk Kang."}
 
 ## Technical Debt
 
-[![](graphics/debt.png){width=45%}](https://www.monkeyuser.com/2018/tech-debt/)
+[![Technical debt comic](graphics/debt.png){width=45%}](https://www.monkeyuser.com/2018/tech-debt/)
 
 ## The Notebook
 
 > Jupyter Notebooks are a gift from God to those who work with data. They allow us to do quick experiments with Julia, Python, R, and more -- [John Paul Ada](https://towardsdatascience.com/no-hassle-machine-learning-experiments-with-azure-notebooks-e1a22e8782c3)
 
-![](graphics/jupyter.png){title="Courtesy Eunsuk Kang." width=60%}
+![A Jupyter notebook](graphics/jupyter.png){title="Courtesy Eunsuk Kang." width=60%}
 
 > Q: What are some benefits and drawbacks of Jupyter-style notebooks?
 
